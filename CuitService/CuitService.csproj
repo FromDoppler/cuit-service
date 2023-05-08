@@ -6,7 +6,6 @@
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
     <NullableReferenceTypes>true</NullableReferenceTypes>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <AssemblyVersion>2020.12.18.0</AssemblyVersion>
     <FileVersion>2020.12.18.0</FileVersion>
   </PropertyGroup>
