@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
     <NullableReferenceTypes>true</NullableReferenceTypes>
@@ -15,7 +15,7 @@
     <PackageReference Include="AutoFixture" Version="4.17.0" />
     <PackageReference Include="AutoFixture.Xunit2" Version="4.17.0" />
     <PackageReference Include="coverlet.collector" Version="3.1.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="5.0.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="7.0.3" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
     <PackageReference Include="Moq" Version="4.17.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5" />

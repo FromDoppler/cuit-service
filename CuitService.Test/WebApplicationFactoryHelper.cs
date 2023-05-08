@@ -32,7 +32,7 @@ namespace CuitService.Test
             => factory.ConfigureSecurityOptions(
                 o => o.SkipLifetimeValidation = true);
 
-        public static WebApplicationFactory<Startup> AddConfiguration(this WebApplicationFactory<Startup> factory, IEnumerable<KeyValuePair<string, string>> initialData)
+        public static WebApplicationFactory<Startup> AddConfiguration(this WebApplicationFactory<Startup> factory, IEnumerable<KeyValuePair<string, string?>>? initialData)
             => factory.WithWebHostBuilder(
                 builder => builder.ConfigureAppConfiguration(
                     (builderContext, configurationBuilder) => configurationBuilder.AddInMemoryCollection(initialData)));

@@ -79,7 +79,7 @@ namespace CuitService.Test
             _httpTest.RespondWithJson(DemoResult);
 
             using var appFactory = _factory.WithDisabledLifeTimeValidation()
-                .AddConfiguration(new Dictionary<string, string>()
+                .AddConfiguration(new Dictionary<string, string?>()
                 {
                     ["TaxInfoProvider:UseDummyData"] = "false",
                     ["TaxInfoProvider:Host"] = host,
@@ -109,7 +109,7 @@ namespace CuitService.Test
         {
             // Arrange
             using var appFactory = _factory.WithBypassAuthorization()
-                .AddConfiguration(new Dictionary<string, string>()
+                .AddConfiguration(new Dictionary<string, string?>()
                 {
                     ["TaxInfoProvider:UseDummyData"] = "true"
                 });
@@ -131,7 +131,7 @@ namespace CuitService.Test
         {
             // Arrange
             using var appFactory = _factory.WithBypassAuthorization()
-                .AddConfiguration(new Dictionary<string, string>()
+                .AddConfiguration(new Dictionary<string, string?>()
                 {
                     ["TaxInfoProvider:UseDummyData"] = "true"
                 });
