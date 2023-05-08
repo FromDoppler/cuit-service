@@ -10,7 +10,7 @@ WORKDIR /src
 COPY ./*.sh ./
 RUN shellcheck -e SC1091,SC1090 ./*.sh
 
-FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS restore
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS restore
 WORKDIR /src
 COPY ./*.sln ./
 COPY */*.csproj ./
@@ -31,7 +31,7 @@ RUN dotnet test
 FROM build AS publish
 RUN dotnet publish "CuitService/CuitService.csproj" -c Release -o /app/publish
 
-FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS final
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS final
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
