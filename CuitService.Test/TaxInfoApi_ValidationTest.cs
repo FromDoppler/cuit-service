@@ -183,7 +183,7 @@ namespace CuitService.Test
             // Arrange
             _httpTest.RespondWithJson(new { });
             var appFactory = _factory.WithBypassAuthorization()
-                .AddConfiguration(new Dictionary<string, string>()
+                .AddConfiguration(new Dictionary<string, string?>()
                 {
                     ["TaxInfoProvider:UseDummyData"] = "false"
                 });
