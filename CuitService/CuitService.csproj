@@ -13,7 +13,7 @@
   <ItemGroup>
     <PackageReference Include="Flurl.Http" Version="3.2.4" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.5" />
-    <PackageReference Include="Tavis.UriTemplates" Version="1.1.1" />
+    <PackageReference Include="Tavis.UriTemplates" Version="2.0.0" />
   </ItemGroup>
 
 </Project>
