@@ -19,4 +19,4 @@ jobs:
     secrets: inherit
     with:
       dockerfile-path: "Dockerfile"
-      dockerhub-image-name: "cuit-service"
+      docker-image-name: "cuit-service"
