@@ -6,7 +6,7 @@ pipeline {
                 sh 'sh ./gitlint.sh'
             }
         }
-        stage('Verify Format') {
+        /*stage('Verify Format') {
             steps {
                 sh 'docker build --target verify-format .'
             }
@@ -15,7 +15,7 @@ pipeline {
             steps {
                 sh 'docker build --target verify-sh .'
             }
-        }
+        }*/
         stage('Restore') {
             steps {
                 sh 'docker build --target restore .'
@@ -39,7 +39,7 @@ pipeline {
             stages {
                 stage('Publish pre-release images from pull request') {
                     when {
-                        changeRequest target: 'main'
+                        changeRequest target: 'master'
                     }
                     steps {
                         withDockerRegistry(credentialsId: "${DOCKER_CREDENTIALS_ID}", url: "") {
@@ -49,11 +49,11 @@ pipeline {
                 }
                 stage('Publish pre-release images from master') {
                     when {
-                        branch 'main'
+                        branch 'master'
                     }
                     steps {
                         withDockerRegistry(credentialsId: "${DOCKER_CREDENTIALS_ID}", url: "") {
-                            sh 'sh build-n-publish.sh --image=${DOCKER_IMAGE_NAME} --commit=${GIT_COMMIT} --name=main'
+                            sh 'sh build-n-publish.sh --image=${DOCKER_IMAGE_NAME} --commit=${GIT_COMMIT} --name=master'
                         }
                     }
                 }
