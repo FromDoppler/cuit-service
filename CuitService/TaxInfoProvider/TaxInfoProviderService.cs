@@ -35,7 +35,7 @@ namespace CuitService.TaxInfoProvider
                     .WithHeader("Password", _taxInfoProviderOptions.Password)
                     .GetJsonAsync<TaxInfo>();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
             }
