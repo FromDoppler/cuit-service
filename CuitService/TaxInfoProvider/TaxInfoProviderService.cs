@@ -1,6 +1,7 @@
 using Flurl.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System;
 using System.Threading.Tasks;
 using Tavis.UriTemplates;
 
@@ -25,10 +26,19 @@ namespace CuitService.TaxInfoProvider
                 .AddParameter("cuit", cuit.SimplifiedValue)
                 .Resolve();
 
-            var result = await url
-                .WithHeader("UserName", _taxInfoProviderOptions.Username)
-                .WithHeader("Password", _taxInfoProviderOptions.Password)
-                .GetJsonAsync<TaxInfo>();
+            var result = new TaxInfo();
+
+            try
+            {
+                result = await url
+                    .WithHeader("UserName", _taxInfoProviderOptions.Username)
+                    .WithHeader("Password", _taxInfoProviderOptions.Password)
+                    .GetJsonAsync<TaxInfo>();
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex.Message);
+            }
 
             return result;
         }
