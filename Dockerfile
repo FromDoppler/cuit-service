@@ -19,10 +19,11 @@ RUN dotnet test
 FROM build AS publish
 RUN dotnet publish "CuitService/CuitService.csproj" -c Release -o /app/publish
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS final
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 COPY --from=publish /app/publish .
 ARG version=unknown
 RUN echo $version > /app/wwwroot/version.txt
+ENTRYPOINT ["dotnet", "CuitService.dll"]
