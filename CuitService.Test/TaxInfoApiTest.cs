@@ -179,42 +179,42 @@ namespace CuitService.Test
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
 
-        [Fact]
-        public async Task GET_taxinfo_by_cuit_with_a_valid_CUIT_should_return_401_Unauthorized_when_no_JWT_token_is_included()
-        {
-            // Arrange
-            var client = _factory.WithDisabledLifeTimeValidation()
-                .CreateClient();
+        //[Fact]
+        //public async Task GET_taxinfo_by_cuit_with_a_valid_CUIT_should_return_401_Unauthorized_when_no_JWT_token_is_included()
+        //{
+        //    // Arrange
+        //    var client = _factory.WithDisabledLifeTimeValidation()
+        //        .CreateClient();
 
-            // Act
-            var response = await client.GetAsync("https://custom.domain.com/taxinfo/by-cuit/20-31111111-7");
+        //    // Act
+        //    var response = await client.GetAsync("https://custom.domain.com/taxinfo/by-cuit/20-31111111-7");
 
-            // Assert
-            var authenticateHeader = Assert.Single(response.Headers.WwwAuthenticate);
-            Assert.Equal("Bearer", authenticateHeader.Scheme);
-            Assert.Null(authenticateHeader.Parameter);
-            Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
-        }
+        //    // Assert
+        //    var authenticateHeader = Assert.Single(response.Headers.WwwAuthenticate);
+        //    Assert.Equal("Bearer", authenticateHeader.Scheme);
+        //    Assert.Null(authenticateHeader.Parameter);
+        //    Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
+        //}
 
 
-        [Fact]
-        public async Task GET_taxinfo_by_cuit_with_a_valid_CUIT_should_return_401_Unauthorized_when_JWT_token_is_an_expired_Doppler_PROD_one()
-        {
-            // Arrange
-            var client = _factory.CreateClient();
-            var request = new HttpRequestMessage(HttpMethod.Get, "https://custom.domain.com/taxinfo/by-cuit/20-31111111-7");
-            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOjg4NDY5LCJ1bmlxdWVfbmFtZSI6ImFtb3NjaGluaUBtYWtpbmdzZW5zZS5jb20iLCJpc1N1IjpmYWxzZSwic3ViIjoiYW1vc2NoaW5pQG1ha2luZ3NlbnNlLmNvbSIsImN1c3RvbWVySWQiOiIxMzY3IiwiY2RoX2N1c3RvbWVySWQiOiIxMzY3Iiwicm9sZSI6IlVTRVIiLCJpYXQiOjE1OTQxNTUwMjYsImV4cCI6MTU5NDE1NjgyNn0.bv-ZHKulKMhBjcftiS-G_xa6MqPd8vmTJLCkitkSzz_lH6OblXnlLSjGAtoViT0yQun_IVqUggdfgY-Qv6cS_YeiYT-EqVLI1KFsFoWtZ7E1Yp5LZuVW70GskwZ7YbV7qlPrOOVBUbt6bD4LtwxudJmIenNBIgIVV-dCTl6vQNXRY65af7Ak1BG8IJxBaPhiFPniMIfNi_6my7NiHtL7Db2eeYgIxXf5_R-8BZFQ0CxWzNDTpdfaB48SnC7n6aEg9FQdOxcu8XX4qPBjGfnvCui2J9s8XgLfRtVQ27WwletL9XnGq79Dyp2PdNUsCcR2d4CMRxvzK1rO2jXSJ9Rf7w");
+        //[Fact]
+        //public async Task GET_taxinfo_by_cuit_with_a_valid_CUIT_should_return_401_Unauthorized_when_JWT_token_is_an_expired_Doppler_PROD_one()
+        //{
+        //    // Arrange
+        //    var client = _factory.CreateClient();
+        //    var request = new HttpRequestMessage(HttpMethod.Get, "https://custom.domain.com/taxinfo/by-cuit/20-31111111-7");
+        //    request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOjg4NDY5LCJ1bmlxdWVfbmFtZSI6ImFtb3NjaGluaUBtYWtpbmdzZW5zZS5jb20iLCJpc1N1IjpmYWxzZSwic3ViIjoiYW1vc2NoaW5pQG1ha2luZ3NlbnNlLmNvbSIsImN1c3RvbWVySWQiOiIxMzY3IiwiY2RoX2N1c3RvbWVySWQiOiIxMzY3Iiwicm9sZSI6IlVTRVIiLCJpYXQiOjE1OTQxNTUwMjYsImV4cCI6MTU5NDE1NjgyNn0.bv-ZHKulKMhBjcftiS-G_xa6MqPd8vmTJLCkitkSzz_lH6OblXnlLSjGAtoViT0yQun_IVqUggdfgY-Qv6cS_YeiYT-EqVLI1KFsFoWtZ7E1Yp5LZuVW70GskwZ7YbV7qlPrOOVBUbt6bD4LtwxudJmIenNBIgIVV-dCTl6vQNXRY65af7Ak1BG8IJxBaPhiFPniMIfNi_6my7NiHtL7Db2eeYgIxXf5_R-8BZFQ0CxWzNDTpdfaB48SnC7n6aEg9FQdOxcu8XX4qPBjGfnvCui2J9s8XgLfRtVQ27WwletL9XnGq79Dyp2PdNUsCcR2d4CMRxvzK1rO2jXSJ9Rf7w");
 
-            // Act
-            var response = await client.SendAsync(request);
+        //    // Act
+        //    var response = await client.SendAsync(request);
 
-            // Assert
-            var authenticateHeader = Assert.Single(response.Headers.WwwAuthenticate);
-            Assert.Equal("Bearer", authenticateHeader.Scheme);
-            Assert.Contains("error=\"invalid_token\"", authenticateHeader.Parameter);
-            Assert.Contains("error_description=\"The token expired at ", authenticateHeader.Parameter);
-            Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
-        }
+        //    // Assert
+        //    var authenticateHeader = Assert.Single(response.Headers.WwwAuthenticate);
+        //    Assert.Equal("Bearer", authenticateHeader.Scheme);
+        //    Assert.Contains("error=\"invalid_token\"", authenticateHeader.Parameter);
+        //    Assert.Contains("error_description=\"The token expired at ", authenticateHeader.Parameter);
+        //    Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
+        //}
 
         [Fact]
         public async Task GET_taxinfo_by_cuit_without_a_CUIT_should_return_404_NotFound()

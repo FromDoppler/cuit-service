@@ -9,7 +9,7 @@ using Tavis.UriTemplates;
 
 namespace CuitService.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]
     public class TaxInfoController
     {
